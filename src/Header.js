@@ -1,4 +1,4 @@
-import { Button, Input, makeStyles, Modal } from "@material-ui/core";
+import { Button, Input, Avatar, makeStyles, Modal } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
 import { auth, provider } from "./firebase";
 import "./Header.css";
@@ -50,17 +50,19 @@ const Header = () => {
         )
       );
   };
-  useEffect(() => {
-    auth.onAuthStateChanged((auth) => {
-      console.log(auth);
-    });
-  });
   const classes = useStyles();
   // getModalStyle is not a pure function, we roll the style only on the first render
   const [modalStyle] = useState(getModalStyle);
   const [open, setOpen] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [user, setUser] = useState([]);
+
+  useEffect(() => {
+    auth.onAuthStateChanged((auth) => {
+      console.log(auth);
+    });
+  }, []);
 
   const handleOpen = () => {
     setOpen(true);
@@ -68,6 +70,10 @@ const Header = () => {
 
   const handleClose = () => {
     setOpen(false);
+  };
+
+  const signout = () => {
+    auth.signOut();
   };
   const body = (
     <div style={modalStyle} className={classes.paper}>
@@ -133,6 +139,9 @@ const Header = () => {
       <div className="header-options">
         <button className="btn" onClick={handleOpen}>
           Login
+        </button>
+        <button onClick={signout} className="btn">
+          Signout
         </button>
         {/* <SimpleModal /> */}
         <a href="https://justinnn07.netlify.app/">Home</a>
