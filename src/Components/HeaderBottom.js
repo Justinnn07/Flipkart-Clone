@@ -1,5 +1,3 @@
-import { Select } from "@material-ui/core";
-import { ArrowDropDown } from "@material-ui/icons";
 import React from "react";
 import "./HeaderBottom.css";
 
@@ -7,7 +5,15 @@ const HeaderBottom = () => {
   return (
     <div className="headerBottom">
       <div className="header-span">
-        <span>Electronics</span>
+        <span className="head">
+          <a href="/">Electronics</a>
+          <i class="fas fa-chevron-down"></i>
+          <div className="dropdown-content">
+            <a href="/">Link 1</a>
+            <a href="/">Link 2</a>
+            <a href="/">Link 3</a>
+          </div>
+        </span>
         <span>TVs & Appliances</span>
         <span>Men</span>
         <span>Women</span>
