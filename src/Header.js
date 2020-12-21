@@ -1,14 +1,17 @@
-import { Button, Input, Avatar, makeStyles, Modal } from "@material-ui/core";
+import {
+  Button,
+  Input,
+  makeStyles,
+  Modal,
+  IconButton,
+} from "@material-ui/core";
 import React, { useEffect, useState } from "react";
-import { auth, provider } from "./firebase";
+import { auth, provider, twitterr } from "./firebase";
 import "./Header.css";
-function rand() {
-  return Math.round(Math.random() * 20) - 10;
-}
 
 function getModalStyle() {
-  const top = 50 + rand();
-  const left = 50 + rand();
+  const top = 50;
+  const left = 50;
 
   return {
     top: `${top}%`,
@@ -50,13 +53,17 @@ const Header = () => {
         )
       );
   };
+
+  const twitterr1 = (e) => {
+    e.preventDefault();
+    auth.signInWithPopup(twitterr).catch((err) => alert(err.message));
+  };
   const classes = useStyles();
   // getModalStyle is not a pure function, we roll the style only on the first render
   const [modalStyle] = useState(getModalStyle);
   const [open, setOpen] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [user, setUser] = useState([]);
 
   useEffect(() => {
     auth.onAuthStateChanged((auth) => {
@@ -99,7 +106,12 @@ const Header = () => {
             <Button onClick={signup}>SignUp</Button>
           </div>
           <div className="google">
-            <i class="fab fa-google" onClick={googlee}></i>
+            <IconButton>
+              <i class="fab fa-google" onClick={googlee}></i>
+            </IconButton>
+            <IconButton>
+              <i class="fab fa-twitter" onClick={twitterr1}></i>
+            </IconButton>
           </div>
         </div>
       </center>
@@ -121,7 +133,7 @@ const Header = () => {
       </form>
       <div className="header-input">
         <img
-          src="https://img1a.flixcart.com/www/linchpin/fk-cp-zion/img/flipkart-plus_8d85f4.png"
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRglu3ChzAfX5yRvHOv81wjfBcxIsJiEMfD1g&usqp=CAU"
           alt=""
           className="header-logo"
         />

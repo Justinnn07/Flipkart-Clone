@@ -1,0 +1,46 @@
+.big-saveLogo {
+  width: 350px;
+}
+
+.ads {
+  background-color: #2874f0;
+  margin: 10px;
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  box-shadow: 0px 5px 8px -9px rgba(0, 0, 0.75);
+}
+
+.right > p {
+  color: #f0f0f0;
+  margin-left: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-right: 5px;
+}
+
+.right > img {
+  width: 90px;
+  display: block;
+  margin: 0 auto;
+}
+
+.right > img:hover {
+  transform: scale(1.07);
+  cursor: pointer;
+}
+.header-ping {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.add-bottom {
+  object-fit: contain;
+  width: 1350px;
+}
