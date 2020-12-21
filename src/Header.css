@@ -94,3 +94,7 @@
   font-size: xx-large;
   cursor: pointer;
 }
+
+p {
+  display: none;
+}

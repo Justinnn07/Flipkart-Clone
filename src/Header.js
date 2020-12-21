@@ -4,10 +4,12 @@ import {
   makeStyles,
   Modal,
   IconButton,
+  Avatar,
 } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
 import { auth, provider, twitterr } from "./firebase";
 import "./Header.css";
+import firebase from "firebase";
 
 function getModalStyle() {
   const top = 50;
@@ -53,7 +55,6 @@ const Header = () => {
         )
       );
   };
-
   const twitterr1 = (e) => {
     e.preventDefault();
     auth.signInWithPopup(twitterr).catch((err) => alert(err.message));
@@ -64,12 +65,20 @@ const Header = () => {
   const [open, setOpen] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [user, setUser] = useState(null);
 
   useEffect(() => {
-    auth.onAuthStateChanged((auth) => {
-      console.log(auth);
+    const unsubscribe = auth.onAuthStateChanged((authUser) => {
+      if (authUser) {
+        console.log(authUser);
+        setUser(authUser);
+      }
     });
-  }, []);
+
+    return () => {
+      unsubscribe();
+    };
+  }, [user, email]);
 
   const handleOpen = () => {
     setOpen(true);
@@ -79,8 +88,9 @@ const Header = () => {
     setOpen(false);
   };
 
-  const signout = () => {
-    auth.signOut();
+  const signout = (e) => {
+    e.preventDefault();
+    firebase.auth().signOut();
   };
   const body = (
     <div style={modalStyle} className={classes.paper}>
@@ -149,12 +159,16 @@ const Header = () => {
         </div>
       </div>
       <div className="header-options">
-        <button className="btn" onClick={handleOpen}>
-          Login
-        </button>
-        <button onClick={signout} className="btn">
-          Signout
-        </button>
+        {user ? (
+          <button onClick={signout} className="btn">
+            Signout
+          </button>
+        ) : (
+          <button className="btn" onClick={handleOpen}>
+            Login
+          </button>
+        )}
+
         {/* <SimpleModal /> */}
         <a href="https://justinnn07.netlify.app/">Home</a>
         <a href="/">More</a>
@@ -162,6 +176,21 @@ const Header = () => {
           <i class="fas fa-shopping-cart"></i>
         </a>
       </div>
+      {user ? (
+        <Avatar src={firebase.auth().currentUser.photoURL} />
+      ) : (
+        <Avatar />
+      )}
+      {user ? (
+        <h3>{firebase.auth().currentUser.displayName}</h3>
+      ) : (
+        <h3>hey guest, Pls signin</h3>
+      )}
+      {user ? (
+        <h3>{"hii, " + firebase.auth().currentUser.email}</h3>
+      ) : (
+        <p>I am the header</p>
+      )}
     </div>
   );
 };
