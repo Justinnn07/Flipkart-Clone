@@ -1,7 +1,7 @@
 import React from "react";
 import "./App.css";
 import Ads from "./Components/Ads";
-import Footer from "./Components/Footer";
+// import Footer from "./Components/Footer";
 import HeaderBottom from "./Components/HeaderBottom";
 import PhoneAds from "./Components/PhoneAds";
 import Products from "./Components/Products";
@@ -17,7 +17,7 @@ const App = () => {
       <Slides />
       <Products />
       <PhoneAds />
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 };
