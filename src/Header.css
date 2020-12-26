@@ -98,3 +98,8 @@
 p {
   display: none;
 }
+
+.button > i {
+  color: #047bd5;
+  font-size: large;
+}

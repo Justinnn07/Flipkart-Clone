@@ -1,0 +1,16 @@
+.products > h2 {
+  font-size: 22px;
+  line-height: 32px;
+  font-weight: 500;
+  padding: 20px;
+  border-bottom: 2px solid lightgray;
+  margin-left: 3px;
+}
+
+.productCarrd {
+  display: flex;
+}
+
+.products {
+  background-color: #ffffff;
+}

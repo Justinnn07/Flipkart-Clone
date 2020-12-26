@@ -1,0 +1,43 @@
+.productCard {
+  background-color: #ffffff;
+  margin-top: 20px;
+  margin-left: 10px;
+  padding-left: 40px;
+}
+
+.home {
+  font-size: 14px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.styles1 > img {
+  width: 150px;
+  padding: 5px;
+  margin-bottom: 10px;
+  object-fit: contain;
+}
+
+.From {
+  font-size: 14px;
+  font-weight: 500;
+  color: #388e3c;
+  margin-left: 40px;
+  padding-bottom: 5px;
+  margin-top: 5px;
+}
+
+.Bedsheet {
+  font-size: 14px;
+  font-weight: 500;
+  color: #9b9b9b;
+  margin-left: 25px;
+  margin-bottom: 20px;
+  font-size: small;
+}
+
+.styles1 > img:hover {
+  transition: transform 0.2s ease-in-out, -webkit-transform 0.2s ease-in-out;
+  transform: scale(1.07);
+  cursor: pointer;
+}

@@ -17,12 +17,6 @@ const db = firebaseApp.firestore();
 
 const auth = firebaseApp.auth();
 
-const provider = new firebase.auth.GoogleAuthProvider();
-
-const twitterr = new firebase.auth.TwitterAuthProvider();
-
-const faceboook = new firebase.auth.FacebookAuthProvider();
-
-export { auth, provider, twitterr, faceboook };
+export { auth };
 
 export default db;

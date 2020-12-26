@@ -1,13 +1,6 @@
-import {
-  Button,
-  Input,
-  makeStyles,
-  Modal,
-  IconButton,
-  Avatar,
-} from "@material-ui/core";
+import { Button, Input, makeStyles, Modal } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
-import { auth, provider, twitterr } from "./firebase";
+import { auth } from "./firebase";
 import "./Header.css";
 import firebase from "firebase";
 
@@ -34,15 +27,21 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Header = () => {
-  const googlee = (e) => {
-    e.preventDefault();
-    auth.signInWithPopup(provider).catch((err) => alert(err.message));
-  };
+  const classes = useStyles();
+  // getModalStyle is not a pure function, we roll the style only on the first render
+  const [modalStyle] = useState(getModalStyle);
+  const [open, setOpen] = useState(false);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [user, setUser] = useState(null);
+
   const signup = (e) => {
     e.preventDefault();
     auth
       .createUserWithEmailAndPassword(email, password)
       .catch((err) => alert(err.message));
+
+    setOpen(false);
   };
   const login = (e) => {
     e.preventDefault();
@@ -54,31 +53,8 @@ const Header = () => {
           "PLEASE MAKE A NEW ACCOUNT OR CHECK YOUR EMAIL OR PASSWORD!"
         )
       );
+    setOpen(false);
   };
-  const twitterr1 = (e) => {
-    e.preventDefault();
-    auth.signInWithPopup(twitterr).catch((err) => alert(err.message));
-  };
-  const classes = useStyles();
-  // getModalStyle is not a pure function, we roll the style only on the first render
-  const [modalStyle] = useState(getModalStyle);
-  const [open, setOpen] = useState(false);
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [user, setUser] = useState(null);
-
-  useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged((authUser) => {
-      if (authUser) {
-        console.log(authUser);
-        setUser(authUser);
-      }
-    });
-
-    return () => {
-      unsubscribe();
-    };
-  }, [user, email]);
 
   const handleOpen = () => {
     setOpen(true);
@@ -88,9 +64,8 @@ const Header = () => {
     setOpen(false);
   };
 
-  const signout = (e) => {
-    e.preventDefault();
-    firebase.auth().signOut();
+  const signout = () => {
+    auth.signOut();
   };
   const body = (
     <div style={modalStyle} className={classes.paper}>
@@ -114,14 +89,6 @@ const Header = () => {
           <div className="btns">
             <Button onClick={login}>Login</Button>
             <Button onClick={signup}>SignUp</Button>
-          </div>
-          <div className="google">
-            <IconButton>
-              <i class="fab fa-google" onClick={googlee}></i>
-            </IconButton>
-            <IconButton>
-              <i class="fab fa-twitter" onClick={twitterr1}></i>
-            </IconButton>
           </div>
         </div>
       </center>
@@ -159,16 +126,9 @@ const Header = () => {
         </div>
       </div>
       <div className="header-options">
-        {user ? (
-          <button onClick={signout} className="btn">
-            Signout
-          </button>
-        ) : (
-          <button className="btn" onClick={handleOpen}>
-            Login
-          </button>
-        )}
-
+        <button className="btn" onClick={handleOpen}>
+          Login
+        </button>
         {/* <SimpleModal /> */}
         <a href="https://justinnn07.netlify.app/">Home</a>
         <a href="/">More</a>
@@ -176,21 +136,6 @@ const Header = () => {
           <i class="fas fa-shopping-cart"></i>
         </a>
       </div>
-      {user ? (
-        <Avatar src={firebase.auth().currentUser.photoURL} />
-      ) : (
-        <Avatar />
-      )}
-      {user ? (
-        <h3>{firebase.auth().currentUser.displayName}</h3>
-      ) : (
-        <h3>hey guest, Pls signin</h3>
-      )}
-      {user ? (
-        <h3>{"hii, " + firebase.auth().currentUser.email}</h3>
-      ) : (
-        <p>I am the header</p>
-      )}
     </div>
   );
 };

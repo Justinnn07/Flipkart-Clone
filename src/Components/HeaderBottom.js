@@ -9,7 +9,7 @@ const HeaderBottom = () => {
           <a href="/">Electronics</a>
           <i class="fas fa-chevron-down"></i>
           <div className="dropdown-content">
-            <a href="">
+            <a href="#MI">
               <i class="fas fa-arrow-right"></i> Mobiles
             </a>
             <span>Mi</span>
