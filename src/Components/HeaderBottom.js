@@ -24,7 +24,7 @@ const HeaderBottom = () => {
           </div>
         </span>
         <span className="header1">
-          <a href="">
+          <a href="/">
             TVs & Appliances <i class="fas fa-chevron-down"></i>
           </a>
         </span>

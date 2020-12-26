@@ -13,8 +13,6 @@
 
 .styles1 > img {
   width: 150px;
-  padding: 5px;
-  margin-bottom: 10px;
   object-fit: contain;
 }
 

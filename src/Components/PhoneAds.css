@@ -1,0 +1,10 @@
+.phoneAds > img {
+  width: 400px;
+  margin-left: 20px;
+  margin-top: 10px;
+}
+
+.phoneAds {
+  display: flex;
+  justify-content: center;
+}

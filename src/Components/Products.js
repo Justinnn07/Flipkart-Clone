@@ -5,7 +5,9 @@ import "./Products.css";
 const Products = () => {
   return (
     <div className="products">
-      <h2>Deals of the Day</h2>
+      <div className="hea1">
+        <h2>Deals of the Day</h2>
+      </div>
       <div className="productCarrd">
         <ProductCard
           title="Home Furnishing Range"

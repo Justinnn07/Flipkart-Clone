@@ -39,7 +39,7 @@ const Slides = () => {
             className="img-stling"
             src={photo.url}
             alt=""
-            height="300px"
+            height="500px"
             width="700px"
           />
         ))}
