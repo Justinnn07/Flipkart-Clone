@@ -1,8 +1,7 @@
 import { Button, Input, makeStyles, Modal } from "@material-ui/core";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { auth } from "./firebase";
 import "./Header.css";
-import firebase from "firebase";
 
 function getModalStyle() {
   const top = 50;
@@ -33,7 +32,6 @@ const Header = () => {
   const [open, setOpen] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [user, setUser] = useState(null);
 
   const signup = (e) => {
     e.preventDefault();
