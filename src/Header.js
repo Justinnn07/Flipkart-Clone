@@ -62,9 +62,9 @@ const Header = () => {
     setOpen(false);
   };
 
-  const signout = () => {
-    auth.signOut();
-  };
+  // const signout = () => {
+  //   auth.signOut();
+  // };
   const body = (
     <div style={modalStyle} className={classes.paper}>
       <center>
